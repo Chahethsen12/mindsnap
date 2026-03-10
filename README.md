@@ -7,6 +7,9 @@ MindSnap is a full-stack web application that lets you save anything — article
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
+**🌐 Live Demo:** [mindsnap-sigma.vercel.app](https://mindsnap-sigma.vercel.app)
+**📡 API Docs:** [mindsnap-production.up.railway.app/docs](https://mindsnap-production.up.railway.app/docs)
+
 ---
 
 ## 🚀 Features
@@ -27,7 +30,7 @@ mindsnap/
 ├── backend/                  ← FastAPI (Python)
 │   ├── app/
 │   │   ├── main.py           ← App entry point, CORS, route registration
-│   │   ├── database.py       ← SQLAlchemy + Supabase connection
+│   │   ├── database.py       ← SQLAlchemy + PostgreSQL connection
 │   │   ├── models/
 │   │   │   ├── user.py       ← Users table
 │   │   │   └── snap.py       ← Snaps table
@@ -61,11 +64,11 @@ mindsnap/
 |---|---|
 | Frontend | React, Vite, Tailwind CSS, Axios |
 | Backend | FastAPI, Python 3.11 |
-| Database | PostgreSQL (Supabase) |
+| Database | PostgreSQL (Railway) |
 | Auth | JWT (python-jose), bcrypt (passlib) |
 | ORM | SQLAlchemy |
 | AI | Gemini API, Claude API, Groq API |
-| DevOps | Docker, Docker Compose |
+| DevOps | Docker, Railway, Vercel |
 
 ---
 
@@ -81,14 +84,7 @@ MindSnap uses three AI providers in a priority order. If one fails or hits a quo
 3. Groq (LLaMA 3.1)      ← final fallback (free tier)
 ```
 
-This means MindSnap keeps working even when one API is down or rate limited. You can see which provider succeeded in the backend logs:
-
-```
-[AI] Trying Gemini...
-[AI] Gemini failed: 429 RESOURCE_EXHAUSTED
-[AI] Trying Groq...
-[AI] Groq succeeded ✓
-```
+This means MindSnap keeps working even when one API is down or rate limited.
 
 ---
 
@@ -97,12 +93,11 @@ This means MindSnap keeps working even when one API is down or rate limited. You
 ### Prerequisites
 - Python 3.11+
 - Node.js 20+
-- A [Supabase](https://supabase.com) account (free)
 - At least one AI API key: [Gemini](https://aistudio.google.com), [Anthropic](https://console.anthropic.com), or [Groq](https://console.groq.com)
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/chahethsen12/mindsnap.git
+git clone https://github.com/Chahethsen12/mindsnap.git
 cd mindsnap
 ```
 
@@ -123,7 +118,7 @@ cp .env.example .env
 
 Edit `.env` with your values:
 ```env
-DATABASE_URL=postgresql://postgres:yourpassword@db.xxxx.supabase.co:5432/postgres
+DATABASE_URL=postgresql://user:password@host:5432/dbname
 SECRET_KEY=your-long-random-secret-key
 GEMINI_API_KEY=AIzaSy...
 ANTHROPIC_API_KEY=sk-ant-...
@@ -157,8 +152,6 @@ Frontend is live at `http://localhost:5173`
 docker-compose up
 ```
 
-This starts both the backend and frontend together.
-
 ---
 
 ## 📡 API Endpoints
@@ -175,7 +168,7 @@ This starts both the backend and frontend together.
 
 ### Example — Create a Snap
 ```bash
-curl -X POST "http://localhost:8000/snaps/" \
+curl -X POST "https://mindsnap-production.up.railway.app/snaps/" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"raw_text": "FastAPI is a modern web framework for building APIs with Python"}'
@@ -236,7 +229,7 @@ CREATE TABLE snaps (
 ## 👨‍💻 Author
 
 **Chaheth Senevirathne**
-- GitHub: [@chahethsen12](https://github.com/chahethsen12)
+- GitHub: [@Chahethsen12](https://github.com/Chahethsen12)
 - LinkedIn: [chaheth-senevirathne](https://linkedin.com/in/chaheth-senevirathne)
 
 ---
