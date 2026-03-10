@@ -1,10 +1,12 @@
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from dotenv import load_dotenv
-import os
 
-load_dotenv()
+# Load .env for local dev — Railway injects vars directly
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
@@ -12,7 +14,6 @@ engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
-# Gives each route a fresh DB session, closes it after the request is done
 def get_db():
     db = SessionLocal()
     try:
