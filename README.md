@@ -8,7 +8,7 @@ MindSnap is a full-stack web application that lets you save anything — article
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
 **🌐 Live Demo:** [mindsnap-sigma.vercel.app](https://mindsnap-sigma.vercel.app)
-**📡 API Docs:** [mindsnap-production.up.railway.app/docs](https://mindsnap-production.up.railway.app/docs)
+**📡 API Docs:** [mindsnap-dn2q.onrender.com](https://mindsnap-dn2q.onrender.com/)
 
 ---
 
@@ -60,15 +60,15 @@ mindsnap/
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Frontend | React, Vite, Tailwind CSS, Axios |
-| Backend | FastAPI, Python 3.11 |
-| Database | PostgreSQL (Railway) |
-| Auth | JWT (python-jose), bcrypt (passlib) |
-| ORM | SQLAlchemy |
-| AI | Gemini API, Claude API, Groq API |
-| DevOps | Docker, Railway, Vercel |
+| Layer    | Technology                          |
+| -------- | ----------------------------------- |
+| Frontend | React, Vite, Tailwind CSS, Axios    |
+| Backend  | FastAPI, Python 3.11                |
+| Database | PostgreSQL (Railway)                |
+| Auth     | JWT (python-jose), bcrypt (passlib) |
+| ORM      | SQLAlchemy                          |
+| AI       | Gemini API, Claude API, Groq API    |
+| DevOps   | Docker, Railway, Vercel             |
 
 ---
 
@@ -91,17 +91,20 @@ This means MindSnap keeps working even when one API is down or rate limited.
 ## 📦 Getting Started
 
 ### Prerequisites
+
 - Python 3.11+
 - Node.js 20+
 - At least one AI API key: [Gemini](https://aistudio.google.com), [Anthropic](https://console.anthropic.com), or [Groq](https://console.groq.com)
 
 ### 1. Clone the repo
+
 ```bash
 git clone https://github.com/Chahethsen12/mindsnap.git
 cd mindsnap
 ```
 
 ### 2. Set up the backend
+
 ```bash
 cd backend
 python -m venv venv
@@ -112,11 +115,13 @@ pip install -r requirements.txt
 ```
 
 ### 3. Configure environment variables
+
 ```bash
 cp .env.example .env
 ```
 
 Edit `.env` with your values:
+
 ```env
 DATABASE_URL=postgresql://user:password@host:5432/dbname
 SECRET_KEY=your-long-random-secret-key
@@ -128,6 +133,7 @@ GROQ_API_KEY=gsk_...
 > You only need at least ONE AI API key. The fallback chain handles the rest.
 
 ### 4. Run the backend
+
 ```bash
 uvicorn app.main:app --reload
 ```
@@ -136,6 +142,7 @@ API is live at `http://localhost:8000`
 Swagger docs at `http://localhost:8000/docs`
 
 ### 5. Set up the frontend
+
 ```bash
 cd ../frontend
 npm install
@@ -156,17 +163,18 @@ docker-compose up
 
 ## 📡 API Endpoints
 
-| Method | Endpoint | Description | Auth |
-|---|---|---|---|
-| POST | `/auth/register` | Create a new account | No |
-| POST | `/auth/login` | Login, returns JWT token | No |
-| POST | `/snaps/` | Create a new snap (AI analyzed) | Yes |
-| GET | `/snaps/` | Get all your snaps | Yes |
-| GET | `/snaps/search?q=` | Search snaps by keyword | Yes |
-| DELETE | `/snaps/{id}` | Delete a snap | Yes |
-| GET | `/health` | Health check | No |
+| Method | Endpoint             | Description                     | Auth |
+| ------ | -------------------- | ------------------------------- | ---- |
+| POST   | `/auth/register`   | Create a new account            | No   |
+| POST   | `/auth/login`      | Login, returns JWT token        | No   |
+| POST   | `/snaps/`          | Create a new snap (AI analyzed) | Yes  |
+| GET    | `/snaps/`          | Get all your snaps              | Yes  |
+| GET    | `/snaps/search?q=` | Search snaps by keyword         | Yes  |
+| DELETE | `/snaps/{id}`      | Delete a snap                   | Yes  |
+| GET    | `/health`          | Health check                    | No   |
 
 ### Example — Create a Snap
+
 ```bash
 curl -X POST "https://mindsnap-production.up.railway.app/snaps/" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
@@ -175,6 +183,7 @@ curl -X POST "https://mindsnap-production.up.railway.app/snaps/" \
 ```
 
 Response:
+
 ```json
 {
   "id": 1,
@@ -229,6 +238,7 @@ CREATE TABLE snaps (
 ## 👨‍💻 Author
 
 **Chaheth Senevirathne**
+
 - GitHub: [@Chahethsen12](https://github.com/Chahethsen12)
 - LinkedIn: [chaheth-senevirathne](https://linkedin.com/in/chaheth-senevirathne)
 
